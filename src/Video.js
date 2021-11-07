@@ -43,7 +43,9 @@ class Video extends React.Component {
             });
         axios
             .get(
-                `${process.env.REACT_APP_API_SERVER}/hospitals/?name=${encodeURIComponent(this.props.hName)}`
+                `${
+                    process.env.REACT_APP_API_SERVER
+                }/hospitals/?name=${encodeURIComponent(this.props.hName)}`
             )
             .then((results) => {
                 console.log("Room list retrieved");
@@ -61,6 +63,7 @@ class Video extends React.Component {
         await connect(this.state.token, {
             name: this.state.roomName,
             video: { width: 640 },
+            audio: true,
         }).then(
             (room) => {
                 console.log(`Successfully joined a Room: ${room}`);
@@ -109,6 +112,14 @@ class Video extends React.Component {
                         `Participant disconnected: ${participant.identity}`
                     );
                 });
+                room.on("disconnected", (room) => {
+                    // Detach the local media elements
+                    room.localParticipant.tracks.forEach((publication) => {
+                        const attachedElements = publication.track.detach();
+                        attachedElements.forEach((element) => element.remove());
+                    });
+                });
+
                 this.setState({
                     activeRoom: room,
                     localMediaAvailable: true,
@@ -153,34 +164,19 @@ class Video extends React.Component {
         return (
             <div>
                 <Toaster ref={(ref) => (this.toaster = ref)} />
-                <InputGroup
-                    onChange={(e) => {
-                        /* Fetch room name from text field and update state */
-                        let roomName = e.target.value;
-                        if (roomName in this.state.roomList)
-                            this.setState({ roomName });
-                    }}
-                />
                 <HTMLSelect
                     options={this.state.roomList}
                     onChange={(e) => {
                         /* Fetch room name from text field and update state */
                         let roomName = e.target.value;
-                        if (roomName in this.state.roomList.map(x => x.value))
+                        if (roomName in this.state.roomList.map((x) => x.value))
                             this.setState({ roomName });
                     }}
                 />
                 {joinOrLeaveRoomButton}
                 <FlexView hAlignContent="center" vAlignContent="center">
                     <FlexView>
-                        <div
-                            style={{
-                                position: "absolute",
-                                bottom: 0,
-                                right: 0,
-                            }}
-                            ref={this.localMediaRef}
-                        ></div>
+                        <div ref={this.localMediaRef}></div>
                     </FlexView>
                     <FlexView>
                         <div ref={this.remoteMediaRef}></div>
