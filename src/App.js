@@ -1,5 +1,6 @@
 import './App.css';
-import React, { Component } from 'react';
+import React from 'react';
+import Video from './Video';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         </div>
         <div className="rightScreen">
           <div className="text">
-            Doctor Meeting
+            <Video hName="test"></Video>
           </div>
         </div>
       </div>
