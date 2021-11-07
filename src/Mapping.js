@@ -26,7 +26,7 @@ export default function Map() {
             center.lng = position.coords.longitude;
         })
     );
-    const { isLoaded, loadError } = useLoadScript({
+    useLoadScript({
         googleMapsApiKey: "AIzaSyA8iORrzrgPiiGQf53qPs50AFet8CzZjhM",
         libraries
     });

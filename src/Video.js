@@ -5,7 +5,6 @@ import { connect, createLocalVideoTrack } from "twilio-video";
 import {
     Button,
     HTMLSelect,
-    InputGroup,
     Intent,
     Toaster,
 } from "@blueprintjs/core";
