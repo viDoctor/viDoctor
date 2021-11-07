@@ -59,7 +59,7 @@ export default function Search({ panTo }) {
       <input
         value={value}
         onChange={handleInput}
-        disabled={!ready}
+        disabled={ready}
         placeholder="Where are you going?"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}

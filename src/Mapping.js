@@ -47,18 +47,19 @@ export default function App() {
         };
 
         service = new google.maps.places.PlacesService(mapRef.current);
-        service.nearbySearch(request, callback);
         function callback(results, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (let i = 0; i < results.length; i++) {
                     let place = results[i];
                     new google.maps.Marker({
                         position: place.geometry.location,
-                        map
+                        map,
+                        title: "Potential Hospital"
                     });
                 }
             }
         }
+        service.nearbySearch(request, callback);
     }, []);
 
     return (
