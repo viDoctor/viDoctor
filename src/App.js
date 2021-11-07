@@ -1,6 +1,7 @@
 import './App.css';
 import React from 'react';
 import Video from './Video';
+import Map from './Mapping';
 
 function App() {
   return (
@@ -15,10 +16,15 @@ function App() {
           <div className="text">
             Find Hospital
           </div>
+          <div className="mapScreen">
+            <Map></Map>
+          </div>
         </div>
         <div className="rightScreen">
           <div className="text">
-            <Video hName="test"></Video>
+            <div className="videoScreen">
+              <Video hName="test"></Video>
+            </div>
           </div>
         </div>
       </div>

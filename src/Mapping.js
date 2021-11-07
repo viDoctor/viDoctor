@@ -7,15 +7,15 @@ let service;
 const libraries = ["hospital"];
 
 const mapContainerStyle = {
-    height: "100vh",
-    width: "100vw"
+    height: "80vh",
+    width: "200%"
 };
 const options = {
     disableDefaultUI: true,
     zoomControl: true
 };
 
-export default function App() {
+export default function Map() {
     let center = {
         lat: 42.38884,
         lng: -72.52985
@@ -54,7 +54,7 @@ export default function App() {
                     new google.maps.Marker({
                         position: place.geometry.location,
                         map,
-                        title: "Potential Hospital"
+                        title: "Hospitals"
                     });
                 }
             }

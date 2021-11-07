@@ -21,8 +21,16 @@
 }
 
 .leftScreen {
-  width: 30%;
+  width: 50%;
   color: black;
+}
+
+.mapScreen {
+  width: 50%;
+}
+
+.videoScreen {
+  margin-top: 2em;
 }
 
 .rightScreen {
