@@ -34,8 +34,7 @@ jobs:
         with:
           # Filename for archive
           filename: public.zip
-          # Working directory before zipping
-          directory: build
+          path: build
       - name: Archive package
         uses: actions/upload-artifact@v2
         with:
