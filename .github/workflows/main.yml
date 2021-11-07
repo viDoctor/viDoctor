@@ -30,14 +30,9 @@ jobs:
         run: yarn
       - name: Build
         run: yarn build
-      - uses: TheDoctor0/zip-release@0.6.0
-        with:
-          # Filename for archive
-          filename: public.zip
-          path: build
       - name: Archive package
         uses: actions/upload-artifact@v2
         with:
-          name: public
-          path: public.zip
+          name: public.zip
+          path: build
 
